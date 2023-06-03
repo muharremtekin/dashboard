@@ -7,13 +7,11 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color = Colors.black,
     this.fontSize = 34,
-    this.fontWeight = FontWeight.normal,
     required this.title,
   });
   final String title;
   final Color color;
   final double fontSize;
-  final FontWeight fontWeight;
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -21,7 +19,6 @@ class CustomText extends StatelessWidget {
       style: GoogleFonts.poppins(
         color: color,
         fontSize: fontSize,
-        fontWeight: fontWeight,
       ),
     );
   }

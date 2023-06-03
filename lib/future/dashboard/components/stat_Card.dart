@@ -1,9 +1,7 @@
 import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
-import 'package:new_dashboard/future/dashboard/build_line_chart.dart';
-
-import '../../product/sizes_enum.dart';
+import '../../../product/sizes_enum.dart';
+import 'build_line_chart.dart';
 import 'custom_text.dart';
 
 class StatCard extends StatelessWidget {
@@ -13,7 +11,7 @@ class StatCard extends StatelessWidget {
     required this.value,
     required this.isaHaveChartData,
     required this.isLeanLeft,
-    required this.valueFontSize,
+    this.valueFontSize = 60,
     this.subtitle,
   }) : super(key: key);
   final String title;
@@ -49,25 +47,24 @@ class StatCard extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Container(
-                        color: Colors.blue,
-                        child: FittedBox(
-                          alignment: Alignment.bottomCenter,
-                          child: CustomText(
-                            title: title,
-                          ),
+                      child: FittedBox(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            CustomText(
+                              title: title,
+                              fontSize: Sizes.size30.size,
+                            ),
+                            if (!subtitle.isNull)
+                              CustomText(
+                                title: subtitle!,
+                                fontSize: Sizes.size20.size,
+                              ),
+                          ],
                         ),
                       ),
                     ),
-                    // Alt başlık boş değilse göster
-                    if (!subtitle.isNull)
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.red,
-                          child: CustomText(title: subtitle!),
-                        ),
-                      ),
                   ],
                 ),
               ),
