@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_dashboard/future/dashboard/components/toggle_text_button.dart';
+import 'package:new_dashboard/product/sizes_enum.dart';
 
 import 'components/custom_text.dart';
 import 'components/stat_Card.dart';
@@ -61,15 +63,21 @@ class _DashboardScreenState extends State<DashboardScreen>
           // Başlık alanı
           Expanded(
             flex: 1,
-            child: Container(
-              alignment: Alignment.centerLeft,
-              child: const FittedBox(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: CustomText(
-                    title: 'Dashboard',
-                    fontSize: 40,
-                  ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: Sizes.size16.size),
+              child: const SizedBox(
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FittedBox(
+                      child: CustomText(
+                        title: 'Dashboard',
+                        fontSize: 40,
+                      ),
+                    ),
+                    FittedBox(child: TimeToggleButtons())
+                  ],
                 ),
               ),
             ),
