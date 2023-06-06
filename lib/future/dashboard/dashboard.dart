@@ -3,7 +3,7 @@ import 'package:new_dashboard/future/dashboard/components/toggle_text_button.dar
 import 'package:new_dashboard/product/sizes_enum.dart';
 
 import 'components/custom_text.dart';
-import 'components/stat_Card.dart';
+import 'components/stat_card.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
