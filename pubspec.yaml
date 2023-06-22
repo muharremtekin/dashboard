@@ -37,6 +37,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   fl_chart: ^0.62.0
   google_fonts: ^5.0.0
+  flip_card: ^0.7.0
+  mobx: ^2.2.0
+  mobx_codegen: ^2.3.0
+  build_runner: ^2.4.5
+  json_serializable: ^6.7.0
+  easy_localization: ^3.0.2
+  flutter_mobx: ^2.0.6+5
+  collection: ^1.17.1
 
 dev_dependencies:
   flutter_test:

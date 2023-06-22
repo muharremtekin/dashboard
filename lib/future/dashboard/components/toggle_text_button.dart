@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_dashboard/product/sizes_enum.dart';
+import 'package:new_dashboard/core/enums/sizes_enum.dart';
 
 import 'custom_text.dart';
 
