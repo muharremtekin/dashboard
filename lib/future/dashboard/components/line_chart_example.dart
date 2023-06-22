@@ -1,60 +1,36 @@
-import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
+import 'package:new_dashboard/core/extensions/context_extensions.dart';
+// ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
+import '../model/production_model.dart';
 
 class LineChartSample2 extends StatefulWidget {
-  const LineChartSample2({super.key});
+  final List<ProductionModel>? datas;
+  final int? diffDay;
+
+  const LineChartSample2({super.key, required this.datas, this.diffDay});
 
   @override
   State<LineChartSample2> createState() => _LineChartSample2State();
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  bool showAvg = false;
-
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: 18,
-              left: 12,
-              top: 24,
-              bottom: 12,
-            ),
-            child: LineChart(
-              showAvg ? avgData() : mainData(),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ],
+    return AspectRatio(
+      aspectRatio: 5,
+      child: LineChart(
+        mainData(),
+      ),
     );
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontWeight: FontWeight.w100,
+      fontSize: 10,
     );
     Widget text;
     switch (value.toInt()) {
@@ -74,25 +50,28 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: text,
+      child: Container(
+        color: context.randomColor,
+        child: text,
+      ),
     );
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 15,
+      fontWeight: FontWeight.w100,
+      fontSize: 12,
     );
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = '1';
         break;
       case 3:
-        text = '30k';
+        text = '3';
         break;
       case 5:
-        text = '50k';
+        text = '5';
         break;
       default:
         return Container();
@@ -101,110 +80,84 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Text(text, style: style, textAlign: TextAlign.left);
   }
 
-  LineChartData mainData() {
-    return LineChartData(
-      titlesData: FlTitlesData(
-        show: true,
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 30,
-            interval: 1,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            reservedSize: 42,
-          ),
-        ),
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
-      ),
-      minX: 0,
-      maxX: 9,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-          ],
-          isCurved: true,
-          barWidth: 5,
-          isStrokeCapRound: true,
-          dotData: FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-          ),
-        )
-      ],
-    );
-  }
+  List<Color>? gradientColors;
 
-  LineChartData avgData() {
+  LineChartData mainData() {
+    gradientColors = [
+      context.colors.primary,
+      const Color.fromARGB(255, 0, 212, 166),
+      Colors.cyan
+    ];
+
+    Map<DateTime, List<ProductionModel>> groupedProduction = groupBy(
+      widget.datas!,
+      (ProductionModel production) => production.orderDate!,
+    );
+
+    final List<FlSpot> flSpotList = [];
+
+    int index = 0;
+
+    groupedProduction.forEach((key, value) {
+      flSpotList.add(FlSpot(index.toDouble(), value.length.toDouble()));
+      index++;
+    });
+
     return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
+      gridData: FlGridData(
+        show: false,
+        drawVerticalLine: true,
+        horizontalInterval: 1,
+        verticalInterval: 1,
+        getDrawingHorizontalLine: (value) {
+          return FlLine(
+            color: Colors.grey,
+            strokeWidth: 1,
+          );
+        },
+        getDrawingVerticalLine: (value) {
+          return FlLine(
+            color: Colors.grey,
+            strokeWidth: 1,
+          );
+        },
+      ),
       titlesData: FlTitlesData(
         show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 30,
-            interval: 1,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 42,
-            interval: 1,
-          ),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
         ),
         topTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
+            reservedSize: 0,
+            interval: 1,
+            getTitlesWidget: bottomTitleWidgets,
+          ),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
+            interval: 1,
+            getTitlesWidget: leftTitleWidgets,
+            reservedSize: 42,
+          ),
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
+          spots: flSpotList,
           isCurved: true,
+          gradient: LinearGradient(
+            colors: gradientColors!,
+          ),
           barWidth: 5,
           isStrokeCapRound: true,
           dotData: FlDotData(
@@ -212,9 +165,86 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ),
           belowBarData: BarAreaData(
             show: true,
+            gradient: LinearGradient(
+              colors: gradientColors!
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
+            ),
           ),
         ),
       ],
+      lineTouchData: LineTouchData(
+        getTouchedSpotIndicator:
+            (LineChartBarData barData, List<int> spotIndexes) {
+          return spotIndexes.map((spotIndex) {
+            return TouchedSpotIndicatorData(
+              FlLine(
+                strokeWidth: 2,
+                color: context.colors.primary,
+              ),
+              FlDotData(
+                getDotPainter: (spot, percent, barData, index) {
+                  return FlDotCirclePainter(
+                    radius: 4,
+                    color: Colors.white,
+                    strokeWidth: 4,
+                    strokeColor: context.colors.primary,
+                  );
+                },
+              ),
+            );
+          }).toList();
+        },
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: Colors.transparent,
+          getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
+            return touchedBarSpots.map((barSpot) {
+              final date = DateFormat('yyyy.MM.dd').format(
+                groupedProduction.keys.toList()[barSpot.x.toInt()],
+              );
+
+              return LineTooltipItem(
+                '$date \n',
+                const TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: [
+                  TextSpan(
+                    text: '${barSpot.y.toString()}.Ad',
+                    style: const TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w200,
+                    ),
+                  ),
+                ],
+              );
+            }).toList();
+          },
+        ),
+        // touchCallback: (FlTouchEvent event, LineTouchResponse? lineTouch) {
+        //   if (!event.isInterestedForInteractions ||
+        //       lineTouch == null ||
+        //       lineTouch.lineBarSpots == null) {
+        //     setState(() {
+        //       // touchedValue = -1;
+        //     });
+        //     return;
+        //   }
+        //   final value = lineTouch.lineBarSpots![0].x;
+
+        //   if (value == 0 || value == 6) {
+        //     setState(() {
+        //       // touchedValue = -1;
+        //     });
+        //     return;
+        //   }
+
+        //   setState(() {
+        //     // touchedValue = value;
+        //   });
+        // },
+      ),
     );
   }
 }
