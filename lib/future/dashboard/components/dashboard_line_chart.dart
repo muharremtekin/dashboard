@@ -6,17 +6,17 @@ import 'package:new_dashboard/core/extensions/context_extensions.dart';
 import 'package:collection/collection.dart';
 import '../model/production_model.dart';
 
-class LineChartSample2 extends StatefulWidget {
+class DashboardLineChart extends StatefulWidget {
   final List<ProductionModel>? datas;
   final int? diffDay;
 
-  const LineChartSample2({super.key, required this.datas, this.diffDay});
+  const DashboardLineChart({super.key, required this.datas, this.diffDay});
 
   @override
-  State<LineChartSample2> createState() => _LineChartSample2State();
+  State<DashboardLineChart> createState() => _DashboardLineChartState();
 }
 
-class _LineChartSample2State extends State<LineChartSample2> {
+class _DashboardLineChartState extends State<DashboardLineChart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(

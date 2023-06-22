@@ -3,7 +3,7 @@ import 'dart:js_interop';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../../../product/sizes_enum.dart';
+import '../../../core/enums/sizes_enum.dart';
 import 'build_line_chart.dart';
 import 'custom_text.dart';
 

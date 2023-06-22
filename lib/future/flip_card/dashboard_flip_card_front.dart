@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:new_dashboard/core/extensions/context_extensions.dart';
 import 'package:new_dashboard/future/dashboard/components/custom_header_text.dart';
 import 'package:new_dashboard/future/dashboard/model/production_model.dart';
-import '../dashboard/components/line_chart_example.dart';
+import '../dashboard/components/dashboard_line_chart.dart';
 
 class DashboardFlipCardFront extends StatefulWidget {
   final List<ProductionModel>? datas;
@@ -88,7 +88,7 @@ class _DashboardFlipCardFrontState extends State<DashboardFlipCardFront> {
                           flex: 3,
                           child: Padding(
                             padding: context.paddingLow,
-                            child: LineChartSample2(datas: widget.datas),
+                            child: DashboardLineChart(datas: widget.datas),
                           ),
                         )
                       ],

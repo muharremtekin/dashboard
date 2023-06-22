@@ -2,7 +2,7 @@ import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:new_dashboard/future/dashboard/components/toggle_text_button.dart';
 //import 'package:new_dashboard/future/dashboard/viewModel/dashboard_viewModel.dart';
-import 'package:new_dashboard/product/sizes_enum.dart';
+import 'package:new_dashboard/core/enums/sizes_enum.dart';
 import '../../flip_card/dashboard_flip_card.dart';
 import '../components/custom_text.dart';
 import '../components/stat_card.dart';

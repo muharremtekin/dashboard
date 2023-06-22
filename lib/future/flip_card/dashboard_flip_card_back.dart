@@ -3,9 +3,9 @@ import 'package:collection/collection.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:new_dashboard/core/extensions/context_extensions.dart';
-import 'package:new_dashboard/future/dashboard/components/pie_chart_example.dart';
+import 'package:new_dashboard/future/dashboard/components/dashboard_pie_chart.dart';
 import 'package:new_dashboard/future/dashboard/model/production_model.dart';
-import 'package:new_dashboard/product/product_colors_enum.dart';
+import 'package:new_dashboard/core/enums/product_colors_enum.dart';
 import '../dashboard/components/custom_header_text.dart';
 
 class DashboardFlipCardBack extends StatelessWidget {

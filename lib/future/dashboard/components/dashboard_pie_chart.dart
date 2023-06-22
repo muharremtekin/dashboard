@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:new_dashboard/product/product_colors_enum.dart';
+import 'package:new_dashboard/core/enums/product_colors_enum.dart';
 
 import '../model/production_model.dart';
 
