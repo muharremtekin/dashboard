@@ -58,7 +58,7 @@ class DummyProducts {
       revisionNo: 0,
       utCode: 'CNC-5455666',
       productCode: 'productCode',
-      brand: 'BASKI',
+      brand: 'TORNALAMA',
       model: 'model',
       vendor: 'vendor',
       customer: 'customer',

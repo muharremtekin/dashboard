@@ -52,11 +52,8 @@ class DashboardFlipCardBack extends StatelessWidget {
   Row _buildCardBody(Map<String?, List<ProductionModel>> groupedDatas) {
     return Row(
       children: [
-        Container(
-          color: Colors.black,
-          child: DashboardPieChart(
-            datas: groupedDatas,
-          ),
+        DashboardPieChart(
+          datas: groupedDatas,
         ),
         Expanded(
           child: ListView.separated(
