@@ -28,7 +28,7 @@ class _DashboardFlipCardState extends State<DashboardFlipCard> {
   @override
   Widget build(BuildContext context) {
     return FlipCard(
-      flipOnTouch: false,
+      //flipOnTouch: false,
       controller: widget.controller,
       front: DashboardFlipCardFront(
           datas: widget.datas,

@@ -53,7 +53,6 @@ class DashboardPieChartState extends State<DashboardPieChart> {
     final List<PieChartSectionData> sections = [];
 
     // ignore: unused_local_variable
-    int index = 0;
 
     widget.datas.forEach(
       (key, value) {
@@ -71,67 +70,11 @@ class DashboardPieChartState extends State<DashboardPieChart> {
             ),
           ),
         );
-        index++;
       },
     );
     return sections;
   }
 
-//   List<PieChartSectionData> showingSections() {
-//     return List.generate(3, (i) {
-//       final isTouched = i == touchedIndex;
-//       final fontSize = isTouched ? 20.0 : 16.0;
-//       final radius = isTouched ? 110.0 : 100.0;
-//       // final widgetSize = isTouched ? 55.0 : 40.0;
-//       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
-
-//       switch (i) {
-//         case 0:
-//           return PieChartSectionData(
-//             color: context.colors.primary,
-//             value: 40,
-//             title: '40%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff),
-//               shadows: shadows,
-//             ),
-//           );
-//         case 1:
-//           return PieChartSectionData(
-//             color: Colors.red,
-//             value: 30,
-//             title: '30%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff),
-//               shadows: shadows,
-//             ),
-//           );
-//         case 2:
-//           return PieChartSectionData(
-//             color: Colors.green,
-//             value: 16,
-//             title: '16%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff),
-//               shadows: shadows,
-//             ),
-//           );
-
-//         default:
-//           throw Exception('Oh no');
-//       }
-//     });
-//   }
-// }
 
 // class _Badge extends StatelessWidget {
 //   const _Badge(
