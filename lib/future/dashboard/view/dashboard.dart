@@ -41,6 +41,12 @@ class _DashboardScreenState extends State<DashboardScreen>
           flex: 8,
           child: Column(
             children: [
+              const TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Username',
+                ),
+              ),
               // Header alanı
               Expanded(
                 flex: 1,

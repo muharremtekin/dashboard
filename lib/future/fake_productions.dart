@@ -1,4 +1,4 @@
-import '../dashboard/model/production_model.dart';
+import 'dashboard/model/production_model.dart';
 
 class DummyProducts {
   static List<ProductionModel>? products = [

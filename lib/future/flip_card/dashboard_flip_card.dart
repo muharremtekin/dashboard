@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../dashboard/model/production_model.dart';
 import 'dashboard_flip_card_back.dart';
 import 'dashboard_flip_card_front.dart';
-import 'fake_producttions.dart';
+import '../fake_productions.dart';
 
 class DashboardFlipCard extends StatefulWidget {
   final FlipCardController controller = FlipCardController();

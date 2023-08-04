@@ -2,7 +2,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:new_dashboard/future/dashboard/model/production_model.dart';
 
-import '../../flip_card/fake_producttions.dart';
+import '../../fake_productions.dart';
 
 part 'dashboard_viewModel.g.dart';
 
